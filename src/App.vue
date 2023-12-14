@@ -2,11 +2,19 @@
 export default {
   data() {
     return {
+      tache: '',
       todoList: ["Première tache","Premier commit","Initiliasation du projet"]
     }
   },
   methods:{
-    addTodo(){},
+    addTodo(){
+      if(this.tache != ""){
+        this.todoList.push(this.tache)
+        this.tache = ""
+      } else {
+        alert("Vous n'avez pas mis de tache à ajouter.")
+      }
+    },
     editTodo(){},
     deleteTodo(){}
   },
@@ -21,7 +29,7 @@ export default {
     <h2>Todo List</h2>
   </div>
   <div>
-    <input name="tache" type="text">
+    <input v-model="tache" name="tache" type="text">
     <button @click="addTodo()">Ajouter</button>
   </div>
     <ul v-if="todoList.length>0">
